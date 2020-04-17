@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5e972a05b56c5e6b3b584830"},"name":"Phones","parentId":null}
+{"_id":{"$oid":"5e972a66a1881116827d5afd"},"name":"iPhone","parentId":{"$oid":"5e972a05b56c5e6b3b584830"}}
+{"_id":{"$oid":"5e972a7fa1881116827d5afe"},"name":"Lenovo","parentId":{"$oid":"5e972a05b56c5e6b3b584830"}}
+{"_id":{"$oid":"5e972a89a1881116827d5aff"},"name":"Xiaomi","parentId":{"$oid":"5e972a05b56c5e6b3b584830"}}
+{"_id":{"$oid":"5e97339aa1881116827d5b02"},"name":"TV","parentId":null}
+{"_id":{"$oid":"5e9733b4a1881116827d5b04"},"name":"Sumsung","parentId":{"$oid":"5e97339aa1881116827d5b02"}}
