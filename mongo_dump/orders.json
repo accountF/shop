@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5e999ab758a2be8fba0b2842"},"userName":"Lesha","userEmail":"lesha@l.com","phone":"375293163792","deliveryType":"Master","address":"Frunze","payment":"Cash","orderDate":"2020-04-17","status":"In process"}
+{"_id":{"$oid":"5e999f84557d419084dd6e93"},"userName":"Katya","userEmail":"katya@k.com","phone":"294783920138","deliveryType":"Ne Master","address":"Masherova","payment":"Card","orderDate":"2020-04-17","status":"In process"}
