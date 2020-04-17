@@ -50,7 +50,7 @@ export default class Products extends JetView {
 	}
 
 	loadProductsForTable(categoryId) {
-		webix.ajax().get(`http://localhost:3000/products/forTable/${categoryId}`).then((data) => {
+		webix.ajax().get(`/products/forTable/${categoryId}`).then((data) => {
 			this.tableComponent.clearAll();
 			this.tableComponent.parse(data);
 		});

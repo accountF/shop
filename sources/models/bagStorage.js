@@ -4,13 +4,13 @@ class BagStorage {
 	}
 
 	addProduct(id, amount) {
-		webix.ajax().post("http://localhost:3000/bag/", {productId: id, numberOfProducts: amount}).then(() => {
+		webix.ajax().post("/bag/", {productId: id, numberOfProducts: amount}).then(() => {
 			this.pullProductsAndRender();
 		});
 	}
 
 	deleteProduct(id) {
-		webix.ajax().del(`http://localhost:3000/bag/${id}`).then(() => {
+		webix.ajax().del(`/bag/${id}`).then(() => {
 			this.pullProductsAndRender();
 		});
 	}
@@ -32,7 +32,7 @@ class BagStorage {
 	}
 
 	pullProductsAndRender() {
-		webix.ajax().get("http://localhost:3000/bag/").then((products) => {
+		webix.ajax().get("/bag/").then((products) => {
 			this.products = products.json();
 			this.render();
 		});
@@ -45,7 +45,7 @@ class BagStorage {
 	}
 
 	order(orderInfo) {
-		webix.ajax().post("http://localhost:3000/bag/makeOrder", orderInfo).then(() => {
+		webix.ajax().post("/bag/makeOrder", orderInfo).then(() => {
 			this.pullProductsAndRender();
 		});
 	}
