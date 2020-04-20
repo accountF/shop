@@ -5,8 +5,15 @@ const Orders = require("../models/orders");
 const router = express.Router();
 
 router.post("/", (req, res) => {
+	console.log(req.user);
+	let userId = req.user._id;
 	Bag.remove({orderId: null, productId: req.body.productId}).then(() => {
-		Bag.create(req.body).then((productInfo) => {
+		let bag = {
+			productId: req.body.productId,
+			numberOfProducts: req.body.numberOfProducts,
+			userId: userId
+		};
+		Bag.create(bag).then((productInfo) => {
 			res.send(productInfo);
 		});
 	});
@@ -50,7 +57,19 @@ router.delete("/:id", (req, res) => {
 });
 
 router.post("/makeOrder", (req, res) => {
-	Orders.create(req.body).then((order) => {
+	let userId = req.user._id;
+	let order = {
+		userId: userId,
+		userName: req.body.userName,
+		userEmail: req.body.userEmail,
+		phone: req.body.phone,
+		deliveryType: req.body.deliveryType,
+		address: req.body.address,
+		payment: req.body.payment,
+		orderDate: req.body.orderDate,
+		status: req.body.status
+	};
+	Orders.create(order).then((order) => {
 		Bag.find({orderId: undefined}).updateMany({orderId: order._id}).then(() => {
 			res.send([]);
 		});

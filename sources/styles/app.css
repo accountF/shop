@@ -33,3 +33,8 @@
     margin-top: 25px;
     border: 2px solid black;
 }
+
+.user-login {
+    text-align: right;
+    margin-top: 11px !important;
+}

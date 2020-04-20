@@ -47,7 +47,7 @@ export default class Authorization extends JetView {
 
 	showWindow(id) {
 		this.getRoot().show();
-		webix.ajax().get(`http://localhost:3000/products/description/${id.row}`).then((data) => {
+		webix.ajax().get(`/products/description/${id.row}`).then((data) => {
 			this.templateComponent.parse(data);
 			this.data = data.json();
 			this.$$("windowHeader").setValues({productName: this.data.name});
@@ -60,7 +60,7 @@ export default class Authorization extends JetView {
 
 	changeRating() {
 		let newRating = +this.data.rating + 1;
-		webix.ajax().put(`http://localhost:3000/products/changeRating/${this.data._id}`, {rating: newRating}).then((data) => {
+		webix.ajax().put(`/products/changeRating/${this.data._id}`, {rating: newRating}).then((data) => {
 			this.data = data.json();
 			this.templateComponent.parse(data);
 			this.app.callEvent("onRatingChange", []);

@@ -11,7 +11,8 @@ const ProductsScheme = new Scheme({
 	categoryId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "categories"
-	}
+	},
+	userId: mongoose.Schema.Types.ObjectId
 }, {versionKey: false});
 
 const Products = mongoose.model("products", ProductsScheme);

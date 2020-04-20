@@ -11,7 +11,8 @@ export default class TopView extends JetView {
 					css: "webix_dark",
 					elements: [
 						{view: "label", label: "Shop"},
-						{view: "button", value: "Logout", width: 150, css: "webix_transparent"},
+						{template: "Hi, #name#", localId: "userName", borderless: true, css: "user-login", hidden: true},
+						{view: "button", value: "Logout", width: 150, css: "webix_transparent", click: () => this.logout()},
 						{view: "button", value: "History", width: 150, css: "webix_transparent", click: () => this.show("./orders")},
 						{view: "button", localId: "btnBag", value: "Bag", width: 150, css: "webix_transparent", click: () => this.show("./bag")}
 					]
@@ -34,8 +35,9 @@ export default class TopView extends JetView {
 	init() {
 		this.menuComponent = this.$$("menu");
 		this.btnBag = this.$$("btnBag");
+		this.userName = this.$$("userName");
 
-		webix.ajax().get("http://localhost:3000/categories/menu").then((data) => {
+		webix.ajax().get("/categories/menu").then((data) => {
 			this.menuComponent.parse(data);
 		});
 
@@ -57,5 +59,25 @@ export default class TopView extends JetView {
 
 			this.app.callEvent("onBagChanged", []);
 		});
+
+		webix.ajax().get("/users").then((userInfo) => {
+			let userInfoToJson = userInfo.json();
+			if (userInfoToJson) {
+				this.userName.show();
+				this.userName.setValues({name: userInfoToJson.name});
+			}
+			else {
+				this.userName.hide();
+				if (window.location.href !== "http://localhost:3000/#!/auth") {
+					window.location.href = "http://localhost:3000/#!/auth";
+					window.location.reload(true);
+				}
+			}
+		});
+	}
+
+	logout() {
+		this.show("/auth");
+		webix.ajax().get("/users/logout");
 	}
 }

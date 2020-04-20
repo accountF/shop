@@ -1,10 +1,16 @@
 const express = require("express");
 const Orders = require("../models/orders");
 
+const ObjectId = require("mongodb").ObjectID;
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
+	let userId = req.user._id;
 	Orders.aggregate([
+		{
+			$match: {userId: ObjectId(userId)}
+		},
 		{
 			$lookup: {
 				from: "bags",

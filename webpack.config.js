@@ -1,5 +1,6 @@
 let path = require("path");
 let webpack = require("webpack");
+let LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = function (env) {
 	let pack = require("./package.json");
@@ -20,7 +21,7 @@ module.exports = function (env) {
 		},
 		output: {
 			path: path.join(__dirname, "codebase"),
-			publicPath: "/codebase/",
+			publicPath: "/server/public/codebase/",
 			filename: "[name].js",
 			chunkFilename: "[name].bundle.js"
 		},
@@ -58,7 +59,8 @@ module.exports = function (env) {
 				APPNAME: `"${pack.name}"`,
 				PRODUCTION: production,
 				BUILD_AS_MODULE: asmodule || standalone
-			})
+			}),
+			new LiveReloadPlugin()
 		],
 		devServer: {
 			stats: "errors-only"

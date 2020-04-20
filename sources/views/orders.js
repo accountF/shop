@@ -37,7 +37,7 @@ export default class Orders extends JetView {
 	}
 
 	updateOrderList() {
-		webix.ajax().get("http://localhost:3000/orders").then((order) => {
+		webix.ajax().get("/orders").then((order) => {
 			this.tableComponent.clearAll();
 			this.tableComponent.parse(order);
 		});
